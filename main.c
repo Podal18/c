@@ -6,43 +6,43 @@
 #include <stdio.h>
 #include <string.h>
 
-// Структура для представления товара
 typedef struct Product {
-    char productName[50]; // Название товара
-    double price;        // Цена товара
+    char productName[50];
+    double price;
 } Product;
 
-// Объединение для представления информации о платеже
 typedef union Pay {
-    char cardNumber[16]; // Номер кредитной карты
-    int checkNumber;     // Номер чека
+    char cardNumber[16];
+    int checkNumber;
 } Pay;
 
-// Структура для представления покупателя
 typedef struct Customer {
-    char name[30];       // ФИО покупателя
-    char city[20];       // Город покупателя
-    Pay pay; // Информация о платеже
+    char name[30];
+    char city[20];
+    Pay pay;
 } Customer;
 
-// Структура для представления покупки
 typedef struct Pokupka {
-    int pokupkaId;       // ИД покупки
-    Product product;      // Товар
-    Customer customer;    // Покупатель
-    char payMethod[20]; // Метод оплаты ("Card" или "Check")
+    int pokupkaId;
+    Product product;
+    Customer customer;
+    char payMethod[20];
 } Pokupka;
 
 int main() {
-    // Создаем товар
+    // считывание информации о товаре
     Product item;
-    strcpy(item.productName, "Ноутбук");
-    item.price = 45000.00;
+    printf("Введите название товара: ");
+    scanf("%s", item.productName);
+    printf("Введите цену товара: ");
+    scanf("%lf", &item.price);
 
-    // Создаем покупателя
+    // Создаем покупателя + считывание
     Customer buyer;
-    strcpy(buyer.name, "Подгорнова Александра Васильевна");
-    strcpy(buyer.city, "Москва");
+    printf("Введите ФИО покупателя: ");
+    scanf("%s", buyer.name);
+    printf("Введите город покупателя: ");
+    scanf("%s", buyer.city);
 
     // Создаем покупку
     Pokupka pokupka;
@@ -50,8 +50,23 @@ int main() {
     pokupka.product = item;
     pokupka.customer = buyer;
 
-    // Выбираем метод оплаты
-    strcpy(pokupka.payMethod, "Card"); // Можно выбрать "Check" для оплаты чеком
+    // Выбор метода оплаты, считывание
+    printf("Выберите метод оплаты (Card или Check): ");
+    scanf("%s", pokupka.payMethod);
+
+    getchar(); // Считываем символ новой строки из буфера
+
+    // Вводим информацию о методе оплаты
+    if (strcmp(pokupka.payMethod, "Card") == 0) {
+        printf("Введите номер карты: ");
+        scanf("%s", pokupka.customer.pay.cardNumber);
+    } else if (strcmp(pokupka.payMethod, "Check") == 0) {
+        printf("Введите номер чека: ");
+        scanf("%d", &pokupka.customer.pay.checkNumber);
+    } else {
+        printf("Неподдерживаемый метод оплаты\n");
+        return 0; 
+    }
 
     // Выводим информацию о покупке
     printf("ID покупки №%d\n", pokupka.pokupkaId);
@@ -65,8 +80,6 @@ int main() {
     } else if (strcmp(pokupka.payMethod, "Check") == 0) {
         printf("Метод оплаты: Чек\n");
         printf("Номер чека: %d\n", pokupka.customer.pay.checkNumber);
-    } else {
-        printf("Неподдерживаемый метод оплаты\n");
     }
 
     return 0;
