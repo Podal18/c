@@ -84,3 +84,53 @@ int main() {
 
     return 0;
 }
+
+////stepik. Работа с массивами на С, 5.1, шаг 7
+//Допишите программу, которая считает две точки  и выводит имя точки, ближайшей к началу координат
+
+#include <stdio.h>
+struct point_t{
+    char name;
+    int x, y;
+};
+
+main(){
+    struct point_t a;
+    struct point_t b;
+    scanf("%c %d %d ", &a.name, &a.x, &a.y);
+    scanf("%c %d %d ", &b.name, &b.x, &b.y);
+    
+    float A = sqrt(a.x * a.x + a.y * a.y);
+    float B = sqrt(b.x * b.x + b.y * b.y);
+    
+    char bliz;
+if (A < B) {
+    bliz = a.name;
+} else {
+    bliz = b.name;
+}
+     printf("%c", bliz);
+
+}
+//stepik. Работа с массивами на С, 5.1, шаг 10
+//Напишите функцию для определения четверти к которой относится заданная точка
+int qurt(point_t z) {
+if (z.x > 0 && z.y > 0) {
+        // Точка находится в первой четверти
+        return 1;
+    } else if (z.x < 0 && z.y > 0) {
+        // Точка находится во второй четверти
+        return 2;
+    } else if (z.x < 0 && z.y < 0) {
+        // Точка находится в третьей четверти
+        return 3;
+    } else if (z.x > 0 && z.y < 0) {
+        // Точка находится в четвёртой четверти
+        return 4;
+    } else {
+        // Точка лежит на одной из координатных осей
+        return 0;
+    }
+	return 0;
+}
+
