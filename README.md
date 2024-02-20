@@ -21,7 +21,7 @@ int main(void)
     ptr_b = ptr_help; //ptr_b = 10, ptr_help = -5 --> ptr_a = 10, ptr_b = -5
     printf("%d %d", *ptr_a, *ptr_b);
 
-    __ASSERT_TESTS__ // макроопределение для тестирования (не убирать и должно идти непосредственно перед return 0)
+    __ASSERT_TESTS__ 
     return 0;
 }
 
@@ -45,7 +45,7 @@ int main(void)
     
     printf("%d", *ptr_var);
 
-    __ASSERT_TESTS__ // макроопределение для тестирования (не убирать и должно идти непосредственно перед return 0)
+    __ASSERT_TESTS__ 
     return 0;
 }
 
@@ -71,7 +71,7 @@ int main(void)
     
     printf("%d", var);
     
-    __ASSERT_TESTS__ // макроопределение для тестирования (не убирать и должно идти непосредственно перед return 0)
+    __ASSERT_TESTS__ 
     return 0;
 }
 
