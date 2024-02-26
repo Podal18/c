@@ -43,7 +43,7 @@ int main(void)
 
     ptr_ch = (char *) ptr_var;
     
-    printf("%d", *ptr_var);
+    printf("%d", *ptr_ch);
 
     __ASSERT_TESTS__ 
     return 0;
