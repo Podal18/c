@@ -1,0 +1,101 @@
+/*METANIT.COM*/
+/*Задача 1
+Напишите программу, в которой пользователь вводит в консоли название файла, 
+а программа создает файл с введенным именем и выводит на консоль результат.*/
+
+#include <stdio.h>
+
+int main()
+{   
+    char name[10];
+    scanf("%10s", name);
+    FILE *f = fopen(name, "w");
+    
+    if (!f)
+        perror("Error");
+        return 1;
+        
+    fclose(f);
+    return 0;
+}
+
+/*Задача 2
+Напишите программу, которая открывает файл с именем "test.dat" на чтение. 
+Если файл открыт успешно, то его следует закрыть и функция main в этом случае возвращает 0.
+Иначе, при ошибке открытия файла, функция main должна вернуть значение 2.*/
+
+#include <stdio.h>
+
+int main()
+{   
+    
+    FILE *f = fopen("test.dat", "r");
+    
+    if (f == NULL)
+        return 2;
+    
+    fclose(f);
+    return 0;
+}
+
+/*Задача 3. 
+Решебник Абрамян.
+Создание файла, ввод и вывод его элементов.
+File1. Дана строка S. Если S является допустимым именем файла, то создать
+пустой файл с этим именем и вывести TRUE. Если файл с именем S создать
+нельзя, то вывести FALSE*/
+
+#include <stdio.h>
+
+int main() {
+    char S[100];
+    scanf("%s", S);
+    
+    FILE *file = fopen(S, "w");
+
+
+    if (file != NULL) {
+        printf("True\n");
+        fclose(file);
+    } else {
+        printf("False\n");
+    }
+
+    return 0;
+}
+
+/*Задача 4.
+Решебник Абрамян.
+Создание файла, ввод и вывод его элементов.
+File10. Дан файл целых чисел. Создать новый файл, содержащий те же элементы, 
+что и исходный файл, но в обратном порядке.*/
+
+
+#include <stdio.h>
+
+int main() {
+    char filename[20];
+    double number;
+    int sum = 0;
+    
+    scanf("%s", filename);
+
+    FILE *file = fopen(filename, "r");
+
+    if (file == NULL) {
+        perror(filename);
+        return 1;
+    }
+
+    for (int i = 0; *file == 1; i++) {
+        if (i % 2 == 0) {
+            sum += number;
+        }
+    }
+
+    fclose(file);
+
+    printf("%d\n", sum);
+
+    return 0;
+}
